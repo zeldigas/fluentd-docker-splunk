@@ -1,0 +1,8 @@
+version: "2"
+services:
+  test:
+    image: alpine
+    labels:
+      "splunk.com/sourcetype": "example_json"
+      "appname": "sample-app-for-fluentd-test"
+    command: "echo '{\"hello\": \"world\"}'"

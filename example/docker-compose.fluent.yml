@@ -1,0 +1,16 @@
+version: "2"
+services: 
+  fluent:
+    image: zeldigas/fluentd-docker-splunk:0.1.0
+    environment:
+      - HOST_HOSTNAME=local-test
+      - SPLUNK_HEC_HOST=${SPLUNK_HOST}
+      - SPLUNK_HEC_TOKEN=${SPLUNK_TOKEN}
+      - SPLUNK_INDEX=${SPLUNK_INDEX}
+      - DOCKER_EXPORT_LABELS=appname
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - ./pos:/fluentd/pos
+    labels:
+      "splunk.com/exclude": "true"
